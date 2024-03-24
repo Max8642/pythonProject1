@@ -18,9 +18,9 @@ def home():
 
 HOME_HTML = """
     <html><body>
-        <h2>Welcome to the Greeter</h2>
+        <h2>FRC Team 1014 Scouting System</h2>
         <form action="/greet">
-            Input Event Code <input type='text' name='eventCode'><br>
+            Input Event Code: <input type='text' name='eventCode'><br>
             <input type='submit' value='Continue'>
         </form>
     </body></html>"""
@@ -29,6 +29,7 @@ HOME_HTML = """
 @app.route('/greet')
 def greet():
     eventCode = request.args.get('eventCode', '')
+    eventCode = eventCode.lower()
     if eventCode == '':
         msg = 'Failed to input event code'
     else:
@@ -146,19 +147,19 @@ def greet():
 
 GREET_HTML = """
     <html><body>
-        <h2>Hello, {0}!</h2>
+        <h2>Event Data for {0}!</h2>
         {1}
     </body></html>
+    
+    
+    
     """
 
 if __name__ == "__main__":
     # Launch the Flask dev server
-    #app.run(host="localhost", debug=True)
-    app.run(debug=True)
+    app.run(host="localhost", debug=True)
 
-@app.route('/')
-def index():
-   #return render_template('index.html')  # this line only displays files in the templates sub directory.  To display from other directories, see below
-   return flask.send_from_directory(".", path="index.html")
-#if __name__ == '__main__':
- #  app.run()
+    #< html > < body >
+        #< h2 > Hello, {0}! < / h2 >
+        #{1}
+    #< / body > < / html >
