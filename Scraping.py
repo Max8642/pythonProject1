@@ -112,11 +112,11 @@ analyzedData = pd.merge(analyzedData, qualData, how = "left")
 analyzedData['Avg Auto'] = analyzedData['Avg Auto'].astype(float)
 analyzedData['Avg Stage'] = analyzedData['Avg Stage'].astype(float)
 analyzedData['Rank'] = analyzedData['Rank'].astype(float)
-
-analyzedData['Prediction'] = round((((analyzedData['OPR'])*0.25) + ((analyzedData['Avg Auto'])*0.3) + ((analyzedData['Avg Stage'])*0.1) + (abs(analyzedData['OPR'] - analyzedData['Rank']))*0.35)/4, 2)
+analyzedData = analyzedData.sort_values(by=['OPR'], ascending = False).reset_index(drop = True)
+analyzedData['Prediction'] = round((((analyzedData['OPR'])*0.35) + ((analyzedData['Avg Auto'])*0.3) + ((analyzedData['Avg Stage'])*0.1) + (abs(analyzedData.index - analyzedData['Rank']))*0.25)/4, 2)
 analyzedData = analyzedData.drop(['Rank'], axis = 1)
 analyzedData = analyzedData.sort_values(by=['Prediction'], ascending = False)
-analyzedData = analyzedData.reset_index()
+analyzedData = analyzedData.reset_index(drop = True)
 
 
 print(rawData)
