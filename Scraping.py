@@ -16,6 +16,7 @@ URL = "https://www.thebluealliance.com/event/2024" + eventCode + "#rankings"
 #concoctanates the URL to use for webscraping
 
 page = requests.get(URL)
+print(page)
 #creates a page object of the scouting data
 
 soup = BeautifulSoup(page.content, "html.parser")
